@@ -9,7 +9,7 @@ load_dotenv()
 
 app = FastAPI(
     title="Hospital Readmission Predictor",
-    description="Predicts 30-day readmission risk for diabetic patients using ML + AI explanation",
+    description="Predicts 30 day readmission risk for diabetic patients using ML + AI explanation",
     version="1.0.0"
 )
 
@@ -39,11 +39,11 @@ def root():
 @app.post("/predict", response_model=PredictionOutput)
 def predict(patient: PatientInput):
     try:
-        # Predict
+        #predicting
         patient_dict = patient.dict()
         result = predict_readmission(patient_dict.copy())
         
-        # AI explanation
+        #explanation using Ai
         explanation = explain_prediction(
             patient_dict,
             result['risk_score'],
