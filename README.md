@@ -22,7 +22,7 @@ python src/test_cases.py
 |-------|-----------|
 | Logistic Regression | 0.6133 |
 | Random Forest | 0.5732 |
-| **Gradient Boosting** | **0.6210** ✅ |
+| **Gradient Boosting** | **0.6210** |
 
 ## Architecture
 
@@ -121,4 +121,3 @@ python src/test_cases.py
 
 ## Author
 **Naveed Nihan**
-MSc Data Analytics Applicant — Dublin City University, September 2026
