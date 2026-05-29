@@ -61,23 +61,24 @@ python src/test_cases.py
 ```
 
 ## Project Structure
-
+```
 hospital-readmission-predictor/
 ├── app/
-│   ├── main.py        ← FastAPI endpoints
-│   ├── model.py       ← ML model + prediction
-│   └── agent.py       ← Groq AI explanation
+│   ├── main.py          ← FastAPI endpoints
+│   ├── model.py         ← ML model + prediction
+│   └── agent.py         ← Groq AI explanation
 ├── notebooks/
 │   ├── 01_EDA.ipynb
 │   └── 02_model.ipynb
 ├── src/
-│   └── test_cases.py  ← API tests
-├── reports/           ← Charts + visualisations
+│   └── test_cases.py    ← API tests
+├── reports/             ← Charts + visualisations
 ├── data/
-│   ├── raw/           ← Original dataset
-│   └── processed/     ← Model + features
-├── .env               ← API keys (not committed)
+│   ├── raw/             ← Original dataset
+│   └── processed/       ← Model + features
+├── .env                 ← API keys (not committed)
 └── requirements.txt
+```
 
 
 ## Dataset
