@@ -1,13 +1,15 @@
 import pickle
 import numpy as np
+import os
 
-PROCESSED = r'D:\Naveed\Educational\hospital-readmission-predictor\data\processed\\'
+# Works both locally and on Render
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROCESSED = os.path.join(BASE_DIR, 'data', 'processed')
 
-#loading model + featuring
-with open(PROCESSED + 'model.pkl', 'rb') as f:
+with open(os.path.join(PROCESSED, 'model.pkl'), 'rb') as f:
     model = pickle.load(f)
 
-with open(PROCESSED + 'features.pkl', 'rb') as f:
+with open(os.path.join(PROCESSED, 'features.pkl'), 'rb') as f:
     feature_names = pickle.load(f)
 
 #mapping ages
