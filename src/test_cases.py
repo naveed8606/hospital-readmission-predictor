@@ -67,6 +67,7 @@ print(f"Health Check: {r.json()['status']}\n")
 for patient in test_patients:
     r = requests.post(BASE_URL + "/predict", json=patient['data'])
     result = r.json()
+    print("Raw response:", result)
     print(f"--- {patient['name']} ---")
     print(f"Risk Score : {result['risk_score']:.2%}")
     print(f"Risk Level : {result['risk_level']}")
