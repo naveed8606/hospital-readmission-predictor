@@ -1,8 +1,8 @@
 import pickle
 import numpy as np
+import pandas as pd
 import os
 
-# Works both locally and on Render
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROCESSED = os.path.join(BASE_DIR, 'data', 'processed')
 
@@ -12,7 +12,6 @@ with open(os.path.join(PROCESSED, 'model.pkl'), 'rb') as f:
 with open(os.path.join(PROCESSED, 'features.pkl'), 'rb') as f:
     feature_names = pickle.load(f)
 
-#mapping ages
 AGE_MAP = {
     '[0-10)': 0, '[10-20)': 1, '[20-30)': 2, '[30-40)': 3,
     '[40-50)': 4, '[50-60)': 5, '[60-70)': 6, '[70-80)': 7,
@@ -20,19 +19,14 @@ AGE_MAP = {
 }
 
 def predict_readmission(patient_data: dict) -> dict:
-    #encoding age
     patient_data['age'] = AGE_MAP.get(patient_data['age'], 5)
-    
-    #encoding binary fields
     patient_data['diabetesMed'] = 1 if patient_data['diabetesMed'] == 'Yes' else 0
     patient_data['change'] = 1 if patient_data['change'] == 'Ch' else 0
     
-    #encoding insulin
     insulin_map = {'No': 0, 'Steady': 1, 'Up': 2, 'Down': 3}
     patient_data['insulin'] = insulin_map.get(patient_data['insulin'], 0)
     
-    #building feature array
-    X = np.array([[patient_data[f] for f in feature_names]])
+    X = pd.DataFrame([[patient_data[f] for f in feature_names]], columns=feature_names)
     
     prob = model.predict_proba(X)[0][1]
     risk_level = 'High' if prob >= 0.5 else 'Medium' if prob >= 0.3 else 'Low'
